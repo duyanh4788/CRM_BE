@@ -1,0 +1,21 @@
+{
+  "name": "crmapi",
+  "description": "Mini-Project-crm",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.5",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
