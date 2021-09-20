@@ -88,7 +88,7 @@ const createUser = async (req, res, next) => {
 };
 
 const uploadAvatar = async (req, res) => {
-  const url = `https://project-crm-be.herokuapp.com/${req.file.path}`;
+  const url = `https://drm-vuduyanh.herokuapp.com/${req.file.path}`;
   try {
     const users = await Users.findById(req.params.id);
     if (users) {
