@@ -110,7 +110,7 @@ const Sendmail = async (req, res) => {
   let CurrentSigninAt = new Date().toISOString();
   const msg = {
     to: email, // Change to your recipient
-    from: "luancauthu@gmail.com", // Change to your verified sender
+    from: "duyanhdeptrai@gmail.com", // Change to your verified sender
     subject: header,
     text: message,
     html: `${message}`,
