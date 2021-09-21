@@ -107,19 +107,21 @@ const uploadAvatar = async (req, res) => {
 const Sendmail = async (req, res) => {
   const { message, email, header } = req.body;
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  let CurrentSigninAt = new Date().toISOString();
   const msg = {
     to: email, // Change to your recipient
     from: "luancauthu@gmail.com", // Change to your verified sender
     subject: header,
     text: message,
-    html: `<strong>${message}</strong>`,
+    html: `${message}`,
+    timesSend: CurrentSigninAt,
   };
   sgMail
     .send(msg)
     .then(() => {
-      const { to, from, html } = msg
+      const { to, from, html, timesSend } = msg
       const history = new HistoryEmail({
-        emailTo: to, emailFrom: from, title: html
+        emailTo: to, emailFrom: from, title: html, CurrentSigninAt: timesSend
       })
       return history.save()
     })
@@ -131,7 +133,7 @@ const Sendmail = async (req, res) => {
     });
 };
 
-const getHistoryEmail = async (req , res) =>{
+const getHistoryEmail = async (req, res) => {
   try {
     const email = await HistoryEmail.find();
     res.status(200).json({
