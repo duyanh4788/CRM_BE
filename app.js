@@ -4,7 +4,6 @@ const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
 const userRoute = require("./Routes/userRoute");
-const { getHistoryEmail } = require("./controller/userController");
 
 // ???
 if (process.env.NODE_ENV === "development") {
@@ -31,5 +30,4 @@ app.use((req, res, next) => {
 });
 // setup api
 app.use("/api/v1/users", userRoute);
-app.route("/historyEmail").get(getHistoryEmail);
 module.exports = app;

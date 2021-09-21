@@ -7,13 +7,17 @@ const {
   updateUser,
   Sendmail,
   uploadAvatar,
+  getHistoryEmail,
 } = require("../controller/userController");
 const { checkEmail, checkNumber, checkEmpty, checkEmailExits, checkLength } = require("../middlewares/checkPattern.validation");
 const { uploadImgaesSingle } = require("../middlewares/uploadImages.validation");
 const router = express.Router();
 
 // CRUD
-router.route("/").get(getAllUser).post(checkEmpty, checkNumber, checkEmail, checkEmailExits, createUser);
+router.route("/").get(getAllUser)
+router.route("/historyEmail").get(getHistoryEmail);
+
+router.route("/").post(checkEmpty, checkNumber, checkEmail, checkEmailExits, createUser);
 router.route("/:id").get(getUser).delete(deleteUser).put(checkEmpty, checkNumber, checkEmail, updateUser);
 
 // UPLOAD
