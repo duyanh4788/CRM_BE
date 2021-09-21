@@ -7,7 +7,6 @@ const historySchema = new mongoose.Schema({
     },
     emailFrom: {
         type: String,
-        unique: true,
         require: true,
     },
     title: {

@@ -20,5 +20,6 @@ router.route("/:id").get(getUser).delete(deleteUser).put(checkEmpty, checkNumber
 router.route("/uploadAvatar/:id").put(uploadImgaesSingle(), uploadAvatar);
 // EMAIL
 router.route("/sendmail").post(Sendmail);
+
 // np
 module.exports = router;

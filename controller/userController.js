@@ -124,13 +124,29 @@ const Sendmail = async (req, res) => {
       return history.save()
     })
     .then((history) => {
-      console.log(history);
       res.status(201).json(history);
     })
     .catch((error) => {
       console.error(error);
     });
 };
+
+const getHistoryEmail = async (req , res) =>{
+  try {
+    const email = await HistoryEmail.find();
+    res.status(200).json({
+      status: "success",
+      data: {
+        email,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "failed",
+      message: error,
+    });
+  }
+}
 
 module.exports = {
   createUser,
@@ -140,4 +156,5 @@ module.exports = {
   updateUser,
   uploadAvatar,
   Sendmail,
+  getHistoryEmail
 };
