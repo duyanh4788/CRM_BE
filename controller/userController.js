@@ -1,5 +1,6 @@
 const Users = require("../Models/userModel");
 const sgMail = require("@sendgrid/mail");
+const HistoryEmail = require("../Models/historyEmail");
 
 const getAllUser = async (req, res) => {
   try {
@@ -95,7 +96,7 @@ const uploadAvatar = async (req, res) => {
       users.avatar = url
       await users.save();
       res.status(200).send(users)
-    }else {
+    } else {
       res.status(401).send("ID NOT FOUND")
     }
   } catch (error) {
@@ -116,10 +117,15 @@ const Sendmail = async (req, res) => {
   sgMail
     .send(msg)
     .then(() => {
-      console.log("Email sent");
-      res.status(201).json({
-        status: "ok roi do",
-      });
+      const { to, from, html } = msg
+      const history = new HistoryEmail({
+        emailTo: to, emailFrom: from, title: html
+      })
+      return history.save()
+    })
+    .then((history) => {
+      console.log(history);
+      res.status(201).json(history);
     })
     .catch((error) => {
       console.error(error);
