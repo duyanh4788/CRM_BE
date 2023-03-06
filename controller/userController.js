@@ -1,6 +1,7 @@
 const Users = require("../Models/userModel");
 const sgMail = require("@sendgrid/mail");
 const HistoryEmail = require("../Models/historyEmail");
+const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
 const getAllUser = async (req, res) => {
